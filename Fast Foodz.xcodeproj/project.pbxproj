@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A3B0CBF24467DCD005FB2AA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3B0CBE24467DCD005FB2AA /* LocationManager.swift */; };
 		4ADDCD3E24463E30006FAF31 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDCD3D24463E30006FAF31 /* MapViewController.swift */; };
 		4ADDCD4024463E6B006FAF31 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDCD3F24463E6B006FAF31 /* HomeViewController.swift */; };
 		4ADDCD4224463E7A006FAF31 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDCD4124463E7A006FAF31 /* ListViewController.swift */; };
 		4ADDCD4424463F8A006FAF31 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDCD4324463F8A006FAF31 /* DetailsViewController.swift */; };
 		9716375B23DE511400888D1C /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716375A23DE511400888D1C /* APIKey.swift */; };
 		9762A92323DE2C1D005C3A4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9762A92223DE2C1D005C3A4D /* AppDelegate.swift */; };
-		9762A92723DE2C1D005C3A4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9762A92623DE2C1D005C3A4D /* ViewController.swift */; };
 		9762A92A23DE2C1D005C3A4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9762A92823DE2C1D005C3A4D /* Main.storyboard */; };
 		9762A92C23DE2C1F005C3A4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9762A92B23DE2C1F005C3A4D /* Assets.xcassets */; };
 		9762A92F23DE2C1F005C3A4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9762A92D23DE2C1F005C3A4D /* LaunchScreen.storyboard */; };
@@ -21,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A3B0CBE24467DCD005FB2AA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		4ADDCD3824463D39006FAF31 /* Fast Foodz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fast Foodz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ADDCD3D24463E30006FAF31 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		4ADDCD3F24463E6B006FAF31 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -28,7 +29,6 @@
 		4ADDCD4324463F8A006FAF31 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		9716375A23DE511400888D1C /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		9762A92223DE2C1D005C3A4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9762A92623DE2C1D005C3A4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9762A92923DE2C1D005C3A4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9762A92B23DE2C1F005C3A4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9762A92E23DE2C1F005C3A4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -72,12 +72,12 @@
 				4ADDCD3924463DD7006FAF31 /* controllers */,
 				9762A93023DE2C1F005C3A4D /* Info.plist */,
 				9762A92223DE2C1D005C3A4D /* AppDelegate.swift */,
-				9762A92623DE2C1D005C3A4D /* ViewController.swift */,
 				9762A92823DE2C1D005C3A4D /* Main.storyboard */,
 				9716375A23DE511400888D1C /* APIKey.swift */,
 				9762A93623DE2D99005C3A4D /* Colors.swift */,
 				9762A92B23DE2C1F005C3A4D /* Assets.xcassets */,
 				9762A92D23DE2C1F005C3A4D /* LaunchScreen.storyboard */,
+				4A3B0CBE24467DCD005FB2AA /* LocationManager.swift */,
 			);
 			path = "Fast Foodz";
 			sourceTree = "<group>";
@@ -152,11 +152,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9762A92723DE2C1D005C3A4D /* ViewController.swift in Sources */,
 				9762A93723DE2D99005C3A4D /* Colors.swift in Sources */,
 				9716375B23DE511400888D1C /* APIKey.swift in Sources */,
 				4ADDCD4424463F8A006FAF31 /* DetailsViewController.swift in Sources */,
 				4ADDCD3E24463E30006FAF31 /* MapViewController.swift in Sources */,
+				4A3B0CBF24467DCD005FB2AA /* LocationManager.swift in Sources */,
 				9762A92323DE2C1D005C3A4D /* AppDelegate.swift in Sources */,
 				4ADDCD4024463E6B006FAF31 /* HomeViewController.swift in Sources */,
 				4ADDCD4224463E7A006FAF31 /* ListViewController.swift in Sources */,
