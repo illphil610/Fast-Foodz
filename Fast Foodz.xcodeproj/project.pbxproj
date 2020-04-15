@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		04A9DC64C14B07E299DD046D /* Pods_Fast_Foodz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B46D064CB6A537DFB8FD7A /* Pods_Fast_Foodz.framework */; };
-		4A3B0CBF24467DCD005FB2AA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3B0CBE24467DCD005FB2AA /* LocationManager.swift */; };
+		4A3B0CBF24467DCD005FB2AA /* UserLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3B0CBE24467DCD005FB2AA /* UserLocationManager.swift */; };
 		4A6A07FA2446AD860087B637 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6A07F92446AD860087B637 /* MapKit.framework */; };
+		4A6A07FC2446CA1F0087B637 /* MapUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A07FB2446CA1F0087B637 /* MapUtility.swift */; };
 		4ADDCD3E24463E30006FAF31 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDCD3D24463E30006FAF31 /* MapViewController.swift */; };
 		4ADDCD4024463E6B006FAF31 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDCD3F24463E6B006FAF31 /* HomeViewController.swift */; };
 		4ADDCD4224463E7A006FAF31 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDCD4124463E7A006FAF31 /* ListViewController.swift */; };
@@ -24,8 +25,9 @@
 
 /* Begin PBXFileReference section */
 		19B46D064CB6A537DFB8FD7A /* Pods_Fast_Foodz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fast_Foodz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4A3B0CBE24467DCD005FB2AA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		4A3B0CBE24467DCD005FB2AA /* UserLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationManager.swift; sourceTree = "<group>"; };
 		4A6A07F92446AD860087B637 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		4A6A07FB2446CA1F0087B637 /* MapUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapUtility.swift; sourceTree = "<group>"; };
 		4AC10343E8D0A7D6FA515F6B /* Pods-Fast Foodz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fast Foodz.release.xcconfig"; path = "Target Support Files/Pods-Fast Foodz/Pods-Fast Foodz.release.xcconfig"; sourceTree = "<group>"; };
 		4ADDCD3824463D39006FAF31 /* Fast Foodz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fast Foodz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ADDCD3D24463E30006FAF31 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -70,9 +72,17 @@
 			children = (
 				9762A93623DE2D99005C3A4D /* Colors.swift */,
 				9716375A23DE511400888D1C /* APIKey.swift */,
-				4A3B0CBE24467DCD005FB2AA /* LocationManager.swift */,
+				4A3B0CBE24467DCD005FB2AA /* UserLocationManager.swift */,
+				4A6A07FB2446CA1F0087B637 /* MapUtility.swift */,
 			);
 			path = utilities;
+			sourceTree = "<group>";
+		};
+		4A6A07FD2446ED270087B637 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = extensions;
 			sourceTree = "<group>";
 		};
 		4ADDCD3924463DD7006FAF31 /* controllers */ = {
@@ -112,6 +122,7 @@
 				4A0D2F462446949900E13F6F /* application */,
 				4ADDCD3924463DD7006FAF31 /* controllers */,
 				4A3B0CC024468223005FB2AA /* utilities */,
+				4A6A07FD2446ED270087B637 /* extensions */,
 				9762A92B23DE2C1F005C3A4D /* Assets.xcassets */,
 			);
 			path = "Fast Foodz";
@@ -242,9 +253,10 @@
 			files = (
 				9762A93723DE2D99005C3A4D /* Colors.swift in Sources */,
 				9716375B23DE511400888D1C /* APIKey.swift in Sources */,
+				4A6A07FC2446CA1F0087B637 /* MapUtility.swift in Sources */,
 				4ADDCD4424463F8A006FAF31 /* DetailsViewController.swift in Sources */,
 				4ADDCD3E24463E30006FAF31 /* MapViewController.swift in Sources */,
-				4A3B0CBF24467DCD005FB2AA /* LocationManager.swift in Sources */,
+				4A3B0CBF24467DCD005FB2AA /* UserLocationManager.swift in Sources */,
 				9762A92323DE2C1D005C3A4D /* AppDelegate.swift in Sources */,
 				4ADDCD4024463E6B006FAF31 /* HomeViewController.swift in Sources */,
 				4ADDCD4224463E7A006FAF31 /* ListViewController.swift in Sources */,

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import CoreLocation
 
 class HomeViewController: UIViewController {
 
@@ -50,6 +50,8 @@ class HomeViewController: UIViewController {
 
 fileprivate extension HomeViewController {
     
+    // MARK: Segmented Control
+    
     func setupSegmentedControlTextAttributes() {
         segmentedControl.setTitleTextAttributes(
             [NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.selected
@@ -60,3 +62,36 @@ fileprivate extension HomeViewController {
     }
     
 }
+
+extension HomeViewController: CLLocationManagerDelegate {
+    
+    // MARK: Location Delegate
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        print("coords \(String(describing: locationManager.location?.coordinate))")
+//        print("location \(String(describing: locations.last?.coordinate))")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Swift.Error) {
+        print("error \(error)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined: break
+            //locationManager.requestWhenInUseAuthorization()
+        case .denied, .restricted: break
+            //presentAlertShowingLocationServiceIsNeeded()
+        case .authorizedWhenInUse, .authorizedAlways:
+            guard CLLocationManager.locationServicesEnabled() else {
+                //presentAlertShowingLocationServiceIsNeeded()
+                return
+            }
+            //centerViewOnUserLocation()
+        @unknown default: break
+        }
+    }
+    
+}
+
+

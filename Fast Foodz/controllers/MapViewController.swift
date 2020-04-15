@@ -10,66 +10,32 @@ import MapKit
 
 class MapViewController: UIViewController {
     
+    // MARK: Properties
+    
     @IBOutlet fileprivate weak var mapView: MKMapView!
     
-    lazy var locationManager = { CLLocationManager() }()
-
+    fileprivate let locationManager = CLLocationManager()
+    
+    lazy var currentLocation: CLLocationCoordinate2D? = {
+        self.locationManager.location?.coordinate
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkLocationServiceAuthStatus()
+        
+        setupLocationManager()
     }
 
-}
-
-extension MapViewController: CLLocationManagerDelegate {
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // well be back
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        // well be back
-    }
-    
 }
 
 fileprivate extension MapViewController {
-    
-    // MARK: Location Methods
+        
+    // MARK: Private Location Methods
     
     func setupLocationManager() {
-        locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    }
-    
-    func checkLocationServiceAuthStatus() {
-        if CLLocationManager.locationServicesEnabled() {
-            setupLocationManager()
-            checkLocationAuthorization()
-        } else {
-            // show alert telling the user to enable lcoation services
-        }
-    }
-    
-    func checkLocationAuthorization() {
-        switch CLLocationManager.authorizationStatus() {
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-            break
-        case .restricted:
-            // show alert to turn off parentl controls, etc. if possible
-            break
-        case .denied:
-            // show alert to instruct user how to enable location
-            break
-        case .authorizedAlways:
-            break
-        case .authorizedWhenInUse:
-            //centerViewOnUserLocation()
-            break
-        @unknown default:
-            break
-        }
+        locationManager.delegate = self
+        //locationManager.requestLocation()
     }
     
     func centerViewOnUserLocation() {
@@ -79,4 +45,36 @@ fileprivate extension MapViewController {
         mapView.setRegion(region, animated: true)
     }
     
+    func presentAlertShowingLocationServiceIsNeeded() {
+        present(MapUtility.getAlertForLocationAccessIfNeeded(), animated: true, completion: nil)
+    }
+    
+}
+
+extension MapViewController: CLLocationManagerDelegate {
+    
+    // MARK: Location Delegate Methods
+    
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        print("coords \(String(describing: locationManager.location?.coordinate))")
+//        print("location \(String(describing: locations.last?.coordinate))")
+//    }
+//
+//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Swift.Error) {
+//        print("error \(error)")
+//    }
+
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .denied, .restricted:
+            presentAlertShowingLocationServiceIsNeeded()
+        case .authorizedWhenInUse, .authorizedAlways:
+            guard CLLocationManager.locationServicesEnabled() else { presentAlertShowingLocationServiceIsNeeded(); return }
+            centerViewOnUserLocation()
+        @unknown default: break
+        }
+    }
 }
