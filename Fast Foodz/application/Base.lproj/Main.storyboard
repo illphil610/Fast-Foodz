@@ -40,7 +40,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MRo-Cw-tqq">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <connections>
-                                    <segue destination="SYA-cL-eM3" kind="embed" id="Yao-S1-nqD"/>
+                                    <segue destination="SYA-cL-eM3" kind="embed" identifier="MapEmbedSegue" id="Yao-S1-nqD"/>
                                 </connections>
                             </containerView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="QHJ-OZ-7L9">
@@ -74,8 +74,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Fast Food Places" id="mfq-7q-w4x"/>
                     <connections>
-                        <outlet property="listViewController" destination="g7o-bv-gMs" id="rSr-Zd-Vdw"/>
-                        <outlet property="mapViewController" destination="MRo-Cw-tqq" id="cUf-FD-lWG"/>
+                        <outlet property="listViewContainer" destination="g7o-bv-gMs" id="rSr-Zd-Vdw"/>
+                        <outlet property="mapViewContainer" destination="MRo-Cw-tqq" id="cUf-FD-lWG"/>
                         <outlet property="segmentedControl" destination="QHJ-OZ-7L9" id="u75-ja-SDw"/>
                     </connections>
                 </viewController>

@@ -6,43 +6,34 @@
 //
 
 import UIKit
-import CoreLocation
 
 class HomeViewController: UIViewController {
 
     // MARK: Properties
     
-    @IBOutlet weak var mapViewController: UIView!
-    @IBOutlet weak var listViewController: UIView!
+    @IBOutlet weak var mapViewContainer: UIView!
+    @IBOutlet weak var listViewContainer: UIView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    fileprivate var mapViewController: MapViewController?
+    fileprivate var listViewController: ListViewController?
+        
     // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupSegmentedControlTextAttributes()
+        getUsersLocationAndCenterOnMap()
     }
     
-    // MARK: Actions
+    // MARK: - Navigation
     
-    @IBAction func switchViewAction(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            UIView.animate(
-                withDuration: 0.5, animations: {
-                    self.mapViewController.alpha = 1
-                    self.listViewController.alpha = 0
-                }
-            )
-        case 1:
-            UIView.animate(
-                withDuration: 0.5, animations: {
-                    self.mapViewController.alpha = 0
-                    self.listViewController.alpha = 1
-                }
-            )
-        default: break
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let currentVC = segue.destination as? MapViewController, segue.identifier == "MapEmbedSegue" {
+            mapViewController = currentVC
+        } else if let currentVC = segue.destination as? ListViewController, segue.identifier == "ListEmbedSeque" {
+            listViewController = currentVC
         }
     }
 
@@ -50,7 +41,7 @@ class HomeViewController: UIViewController {
 
 fileprivate extension HomeViewController {
     
-    // MARK: Segmented Control
+    // MARK: Segmented Control UI
     
     func setupSegmentedControlTextAttributes() {
         segmentedControl.setTitleTextAttributes(
@@ -61,35 +52,34 @@ fileprivate extension HomeViewController {
         )
     }
     
-}
-
-extension HomeViewController: CLLocationManagerDelegate {
+    // MARK: Segment Control Actions
     
-    // MARK: Location Delegate
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        print("coords \(String(describing: locationManager.location?.coordinate))")
-//        print("location \(String(describing: locations.last?.coordinate))")
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Swift.Error) {
-        print("error \(error)")
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .notDetermined: break
-            //locationManager.requestWhenInUseAuthorization()
-        case .denied, .restricted: break
-            //presentAlertShowingLocationServiceIsNeeded()
-        case .authorizedWhenInUse, .authorizedAlways:
-            guard CLLocationManager.locationServicesEnabled() else {
-                //presentAlertShowingLocationServiceIsNeeded()
-                return
-            }
-            //centerViewOnUserLocation()
-        @unknown default: break
+    @IBAction func switchViewAction(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            UIView.animate(
+                withDuration: 0.5, animations: {
+                    self.mapViewContainer.alpha = 1
+                    self.listViewContainer.alpha = 0
+                }
+            )
+        case 1:
+            UIView.animate(
+                withDuration: 0.5, animations: {
+                    self.mapViewContainer.alpha = 0
+                    self.listViewContainer.alpha = 1
+                }
+            )
+        default: break
         }
+    }
+    
+    // MARK: Location
+    
+    func getUsersLocationAndCenterOnMap() {
+        UserLocationManager.getUsersLocation(completion: { [weak self] location in
+            self?.mapViewController?.centerViewOnUser(location)
+        })
     }
     
 }

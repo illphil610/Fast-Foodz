@@ -8,5 +8,6 @@ target 'Fast Foodz' do
   # Pods for Fast Foodz
   pod 'Kingfisher', '~> 5.0'
   pod 'Alamofire', '~> 5.1'
+  pod 'SwiftLocation', '~> 4.0'
 
 end
