@@ -3,11 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04A9DC64C14B07E299DD046D /* Pods_Fast_Foodz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B46D064CB6A537DFB8FD7A /* Pods_Fast_Foodz.framework */; };
 		4A3B0CBF24467DCD005FB2AA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3B0CBE24467DCD005FB2AA /* LocationManager.swift */; };
+		4A6A07FA2446AD860087B637 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6A07F92446AD860087B637 /* MapKit.framework */; };
 		4ADDCD3E24463E30006FAF31 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDCD3D24463E30006FAF31 /* MapViewController.swift */; };
 		4ADDCD4024463E6B006FAF31 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDCD3F24463E6B006FAF31 /* HomeViewController.swift */; };
 		4ADDCD4224463E7A006FAF31 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDCD4124463E7A006FAF31 /* ListViewController.swift */; };
@@ -21,12 +23,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		19B46D064CB6A537DFB8FD7A /* Pods_Fast_Foodz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fast_Foodz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A3B0CBE24467DCD005FB2AA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		4A6A07F92446AD860087B637 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		4AC10343E8D0A7D6FA515F6B /* Pods-Fast Foodz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fast Foodz.release.xcconfig"; path = "Target Support Files/Pods-Fast Foodz/Pods-Fast Foodz.release.xcconfig"; sourceTree = "<group>"; };
 		4ADDCD3824463D39006FAF31 /* Fast Foodz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fast Foodz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ADDCD3D24463E30006FAF31 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		4ADDCD3F24463E6B006FAF31 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4ADDCD4124463E7A006FAF31 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		4ADDCD4324463F8A006FAF31 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		71C3862D7723C2A4BB1EDE94 /* Pods-Fast Foodz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fast Foodz.debug.xcconfig"; path = "Target Support Files/Pods-Fast Foodz/Pods-Fast Foodz.debug.xcconfig"; sourceTree = "<group>"; };
 		9716375A23DE511400888D1C /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		9762A92223DE2C1D005C3A4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9762A92923DE2C1D005C3A4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -41,12 +47,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A6A07FA2446AD860087B637 /* MapKit.framework in Frameworks */,
+				04A9DC64C14B07E299DD046D /* Pods_Fast_Foodz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A0D2F462446949900E13F6F /* application */ = {
+			isa = PBXGroup;
+			children = (
+				9762A92D23DE2C1F005C3A4D /* LaunchScreen.storyboard */,
+				9762A92823DE2C1D005C3A4D /* Main.storyboard */,
+				9762A92223DE2C1D005C3A4D /* AppDelegate.swift */,
+			);
+			path = application;
+			sourceTree = "<group>";
+		};
 		4A3B0CC024468223005FB2AA /* utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -68,26 +86,44 @@
 			path = controllers;
 			sourceTree = "<group>";
 		};
+		5CE6E12FA5484CC30A65F301 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				71C3862D7723C2A4BB1EDE94 /* Pods-Fast Foodz.debug.xcconfig */,
+				4AC10343E8D0A7D6FA515F6B /* Pods-Fast Foodz.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		9762A91623DE2C1D005C3A4D = {
 			isa = PBXGroup;
 			children = (
 				9762A92123DE2C1D005C3A4D /* Fast Foodz */,
 				4ADDCD3824463D39006FAF31 /* Fast Foodz.app */,
+				5CE6E12FA5484CC30A65F301 /* Pods */,
+				FBB7EC79C3938914172A62F8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		9762A92123DE2C1D005C3A4D /* Fast Foodz */ = {
 			isa = PBXGroup;
 			children = (
-				4A3B0CC024468223005FB2AA /* utilities */,
-				4ADDCD3924463DD7006FAF31 /* controllers */,
 				9762A93023DE2C1F005C3A4D /* Info.plist */,
-				9762A92223DE2C1D005C3A4D /* AppDelegate.swift */,
-				9762A92823DE2C1D005C3A4D /* Main.storyboard */,
+				4A0D2F462446949900E13F6F /* application */,
+				4ADDCD3924463DD7006FAF31 /* controllers */,
+				4A3B0CC024468223005FB2AA /* utilities */,
 				9762A92B23DE2C1F005C3A4D /* Assets.xcassets */,
-				9762A92D23DE2C1F005C3A4D /* LaunchScreen.storyboard */,
 			);
 			path = "Fast Foodz";
+			sourceTree = "<group>";
+		};
+		FBB7EC79C3938914172A62F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4A6A07F92446AD860087B637 /* MapKit.framework */,
+				19B46D064CB6A537DFB8FD7A /* Pods_Fast_Foodz.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -97,9 +133,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9762A93323DE2C1F005C3A4D /* Build configuration list for PBXNativeTarget "Fast Foodz" */;
 			buildPhases = (
+				88C6798B78838F746630CFF8 /* [CP] Check Pods Manifest.lock */,
 				9762A91B23DE2C1D005C3A4D /* Sources */,
 				9762A91C23DE2C1D005C3A4D /* Frameworks */,
 				9762A91D23DE2C1D005C3A4D /* Resources */,
+				5CD57E4D63BBB5AEEFABA06C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -154,6 +192,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5CD57E4D63BBB5AEEFABA06C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Fast Foodz/Pods-Fast Foodz-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Fast Foodz/Pods-Fast Foodz-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Fast Foodz/Pods-Fast Foodz-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		88C6798B78838F746630CFF8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Fast Foodz-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9762A91B23DE2C1D005C3A4D /* Sources */ = {
@@ -309,6 +389,7 @@
 		};
 		9762A93423DE2C1F005C3A4D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71C3862D7723C2A4BB1EDE94 /* Pods-Fast Foodz.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7G82ECD844;
@@ -327,6 +408,7 @@
 		};
 		9762A93523DE2C1F005C3A4D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4AC10343E8D0A7D6FA515F6B /* Pods-Fast Foodz.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7G82ECD844;
