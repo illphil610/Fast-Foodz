@@ -47,6 +47,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A3B0CC024468223005FB2AA /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9762A93623DE2D99005C3A4D /* Colors.swift */,
+				9716375A23DE511400888D1C /* APIKey.swift */,
+				4A3B0CBE24467DCD005FB2AA /* LocationManager.swift */,
+			);
+			path = utilities;
+			sourceTree = "<group>";
+		};
 		4ADDCD3924463DD7006FAF31 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -69,15 +79,13 @@
 		9762A92123DE2C1D005C3A4D /* Fast Foodz */ = {
 			isa = PBXGroup;
 			children = (
+				4A3B0CC024468223005FB2AA /* utilities */,
 				4ADDCD3924463DD7006FAF31 /* controllers */,
 				9762A93023DE2C1F005C3A4D /* Info.plist */,
 				9762A92223DE2C1D005C3A4D /* AppDelegate.swift */,
 				9762A92823DE2C1D005C3A4D /* Main.storyboard */,
-				9716375A23DE511400888D1C /* APIKey.swift */,
-				9762A93623DE2D99005C3A4D /* Colors.swift */,
 				9762A92B23DE2C1F005C3A4D /* Assets.xcassets */,
 				9762A92D23DE2C1F005C3A4D /* LaunchScreen.storyboard */,
-				4A3B0CBE24467DCD005FB2AA /* LocationManager.swift */,
 			);
 			path = "Fast Foodz";
 			sourceTree = "<group>";
@@ -303,7 +311,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 7G82ECD844;
 				INFOPLIST_FILE = "Fast Foodz/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -321,7 +329,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 7G82ECD844;
 				INFOPLIST_FILE = "Fast Foodz/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
