@@ -106,6 +106,7 @@ fileprivate extension HomeViewController {
                 }
                                 
                 self?.mapViewController?.placeAnnotationPinsOnMap(with: businesses)
+                
                 //give the businesses to the listview controller to display the data
             
                 self?.handleEndingActivityIndicatorAndPresentingContainerViews()

@@ -7,6 +7,7 @@
 
 import UIKit
 import MapKit
+import Kingfisher
 
 class MapViewController: UIViewController {
     
@@ -64,6 +65,7 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         impactGenerator.prepare()
+        
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         if let detailsVC = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController {
             impactGenerator.impactOccurred()
