@@ -11,11 +11,6 @@ struct YelpBusinessModel: Codable {
     let businesses: [BusinessModel]
 }
 
-struct Coordinates: Codable {
-    let latitude: Double
-    let longitude: Double
-}
-
 struct Location: Codable {
     let address1: String
     let address2: String?
@@ -25,10 +20,23 @@ struct Location: Codable {
     let city: String
 }
 
+struct Coordinates: Codable {
+    let latitude: Double
+    let longitude: Double
+}
+
+struct Category: Codable {
+    let alias: String
+    let title: String
+}
+
 struct BusinessModel: Codable {
     let coordinates: Coordinates
+    let categories: [Category]
     let location: Location
     let image_url: String
+    let distance: Double
+    let rating: Double
     let phone: String
     let name: String
     let url: String

@@ -12,6 +12,7 @@
 		4A6A080124478C360087B637 /* UserLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A080024478C360087B637 /* UserLocationManager.swift */; };
 		4A6A0803244793430087B637 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A0802244793430087B637 /* NetworkManager.swift */; };
 		4A6A08062447C10B0087B637 /* YelpDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A08052447C10B0087B637 /* YelpDataModels.swift */; };
+		4A6A08082448097C0087B637 /* YelpBusinessTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A08072448097C0087B637 /* YelpBusinessTableViewCell.swift */; };
 		4ADDCD3E24463E30006FAF31 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDCD3D24463E30006FAF31 /* MapViewController.swift */; };
 		4ADDCD4024463E6B006FAF31 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDCD3F24463E6B006FAF31 /* HomeViewController.swift */; };
 		4ADDCD4224463E7A006FAF31 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDCD4124463E7A006FAF31 /* ListViewController.swift */; };
@@ -30,6 +31,7 @@
 		4A6A080024478C360087B637 /* UserLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationManager.swift; sourceTree = "<group>"; };
 		4A6A0802244793430087B637 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4A6A08052447C10B0087B637 /* YelpDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpDataModels.swift; sourceTree = "<group>"; };
+		4A6A08072448097C0087B637 /* YelpBusinessTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpBusinessTableViewCell.swift; sourceTree = "<group>"; };
 		4AC10343E8D0A7D6FA515F6B /* Pods-Fast Foodz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fast Foodz.release.xcconfig"; path = "Target Support Files/Pods-Fast Foodz/Pods-Fast Foodz.release.xcconfig"; sourceTree = "<group>"; };
 		4ADDCD3824463D39006FAF31 /* Fast Foodz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fast Foodz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ADDCD3D24463E30006FAF31 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				9762A93623DE2D99005C3A4D /* Colors.swift */,
 				9716375A23DE511400888D1C /* APIKey.swift */,
 				4A6A0802244793430087B637 /* NetworkManager.swift */,
+				4A6A08072448097C0087B637 /* YelpBusinessTableViewCell.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				4A6A0803244793430087B637 /* NetworkManager.swift in Sources */,
 				9762A93723DE2D99005C3A4D /* Colors.swift in Sources */,
 				9716375B23DE511400888D1C /* APIKey.swift in Sources */,
+				4A6A08082448097C0087B637 /* YelpBusinessTableViewCell.swift in Sources */,
 				4ADDCD4424463F8A006FAF31 /* DetailsViewController.swift in Sources */,
 				4ADDCD3E24463E30006FAF31 /* MapViewController.swift in Sources */,
 				9762A92323DE2C1D005C3A4D /* AppDelegate.swift in Sources */,

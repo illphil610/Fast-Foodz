@@ -13,7 +13,9 @@ class MapViewController: UIViewController {
     // MARK: Properties
     
     @IBOutlet weak var mapView: MKMapView!
+    
     fileprivate let reuseIdentifier = "AnnotationView"
+    
     fileprivate lazy var impactGenerator: UIImpactFeedbackGenerator = {
         UIImpactFeedbackGenerator(style: .medium)
     }()
@@ -30,16 +32,19 @@ class MapViewController: UIViewController {
             latitudinalMeters: 1000,
             longitudinalMeters: 1000
         )
+        
         mapView.setRegion(region, animated: false)
     }
     
     func placeAnnotationPinsOnMap(with yelpBusinessModels: [BusinessModel]) {
         yelpBusinessModels.forEach { [weak self] business in
+            
             let annotation = MKPointAnnotation()
             annotation.coordinate = CLLocationCoordinate2D(
                 latitude: business.coordinates.latitude,
                 longitude: business.coordinates.longitude
             )
+            
             self?.mapView.addAnnotation(annotation)
         }
     }

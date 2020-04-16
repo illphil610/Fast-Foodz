@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var mapViewContainer: UIView!
     @IBOutlet weak var listViewContainer: UIView!
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -79,9 +80,17 @@ fileprivate extension HomeViewController {
     // MARK: Location
     
     func handleStartingActivityIndicatorAndHidingContainerViews() {
-        self.mapViewContainer.alpha = 0
-        self.listViewContainer.alpha = 0
+        mapViewContainer.alpha = 0
+        listViewContainer.alpha = 0
+        segmentedControl.alpha = 0
         activityIndicator.startAnimating()
+    }
+    
+    func handleEndingActivityIndicatorAndPresentingContainerViews() {
+        activityIndicator.stopAnimating()
+        segmentedControl.alpha = 1
+        mapViewContainer.alpha = 1
+        listViewContainer.alpha = 1
     }
     
     func getUsersLocationAndCenterOnMap() {
@@ -91,18 +100,20 @@ fileprivate extension HomeViewController {
             self?.mapViewController?.centerViewOnUser(location)
             
             NetworkManager.fetchJsonFromYelpApiService(for: location, completion: { [weak self] businesses in
-                guard let businesses = businesses else { return }
+                guard let businesses = businesses else {
+                    // show alert that we didnt get any data back
+                    return
+                }
                                 
                 self?.mapViewController?.placeAnnotationPinsOnMap(with: businesses)
                 //give the businesses to the listview controller to display the data
             
-                self?.activityIndicator.stopAnimating()
-                self?.mapViewContainer.alpha = 1
-                self?.listViewContainer.alpha = 1
+                self?.handleEndingActivityIndicatorAndPresentingContainerViews()
             })
         })
     }
     
+    // TODO: Persist Segment Control choice
 }
 
 
