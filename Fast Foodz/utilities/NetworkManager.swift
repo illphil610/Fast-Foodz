@@ -20,7 +20,7 @@ class NetworkManager {
         let params: [String: Any] = [
             "latitude": location.coordinate.latitude,
             "longitude": location.coordinate.longitude,
-            "radius": 10000,
+            "radius": 1000,
             "sort_by": "distance",
             "categories": "pizza,mexican,chinese,burgers"
         ]

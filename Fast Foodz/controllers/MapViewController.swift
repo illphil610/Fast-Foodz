@@ -13,8 +13,10 @@ class MapViewController: UIViewController {
     // MARK: Properties
     
     @IBOutlet weak var mapView: MKMapView!
-    let reuseIdentifier = "AnnotationView"
-    let impactGenerator = UIImpactFeedbackGenerator(style: .medium)
+    fileprivate let reuseIdentifier = "AnnotationView"
+    fileprivate lazy var impactGenerator: UIImpactFeedbackGenerator = {
+        UIImpactFeedbackGenerator(style: .medium)
+    }()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,13 +59,15 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         impactGenerator.prepare()
-        impactGenerator.impactOccurred()
-        
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         if let detailsVC = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController {
+            impactGenerator.impactOccurred()
+            
             // pass the details VC the data for the business to present
-            navigationController?.pushViewController(detailsVC, animated: true)
+            
+            self.navigationController?.pushViewController(detailsVC, animated: true)
         }
+        mapView.deselectAnnotation(view.annotation, animated: true)
     }
     
 }
