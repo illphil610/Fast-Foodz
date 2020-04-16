@@ -7,6 +7,7 @@
 
 import UIKit
 import MapKit
+import Kingfisher
 
 class DetailsViewController: UIViewController {
     
@@ -27,6 +28,19 @@ class DetailsViewController: UIViewController {
         
         callButton.layer.cornerRadius = 6
         callButton.clipsToBounds = true
+       
+    }
+    
+    func updateViewsWithBusinessData(for business: BusinessModel?) {
+        
+        let imageUrl = URL(string: business?.image_url ?? "")
+
+        DispatchQueue.main.async {
+            self.imageView.kf.setImage(with: imageUrl)
+            self.label.text = business?.name
+            self.mapView.centerCoordinate.latitude = business?.coordinates.latitude ?? 0.0
+            self.mapView.centerCoordinate.longitude = business?.coordinates.longitude ?? 0.0
+        }
     }
     
     // MARK: Actions

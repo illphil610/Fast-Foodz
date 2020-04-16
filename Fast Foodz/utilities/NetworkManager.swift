@@ -33,6 +33,4 @@ class NetworkManager {
     
 }
 
-fileprivate extension NetworkManager {
-    
-}
+fileprivate extension NetworkManager { }

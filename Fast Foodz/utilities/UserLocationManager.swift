@@ -10,6 +10,7 @@ import SwiftLocation
 import CoreLocation
 
 class UserLocationManager {
+    
     static func getUsersLocation(completion: @escaping (CLLocation) -> Void) {
         LocationManager.shared.locateFromGPS(.oneShot, accuracy: .block) { result in
             switch result {
@@ -17,7 +18,7 @@ class UserLocationManager {
                 completion(location)
             case .failure(_):
                 completion(
-                    CLLocation(latitude: 40.758896, longitude: -73.985130)
+                    CLLocation(latitude: 40.758896,longitude: -73.985130)
                 )
             }
         }

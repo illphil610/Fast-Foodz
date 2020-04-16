@@ -20,6 +20,10 @@ class HomeViewController: UIViewController {
     
     fileprivate var mapViewController: MapViewController?
     fileprivate var listViewController: ListViewController?
+    
+    fileprivate lazy var yelpBusinesses: [String: BusinessModel] = {
+        [String: BusinessModel]()
+    }()
         
     // MARK: Lifecycle
     
@@ -27,7 +31,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         setupSegmentedControlTextAttributes()
-        getUsersLocationAndCenterOnMap()
+        getUsersLocationAndGetBusiessDataFromYelpService()
     }
     
     // MARK: - Navigation
@@ -79,6 +83,21 @@ fileprivate extension HomeViewController {
     
     // MARK: Location
     
+    func getUsersLocationAndGetBusiessDataFromYelpService() {
+        handleStartingActivityIndicatorAndHidingContainerViews()
+        
+        UserLocationManager.getUsersLocation(completion: { [weak self] location in
+            self?.mapViewController?.centerViewOnUser(location)
+            
+            NetworkManager.fetchJsonFromYelpApiService(for: location, completion: { [weak self] businesses in
+                guard let businessModels = businesses else { return } //show alert that we didnt get any data back
+                
+                self?.passBusinessModelsToViewControllers(businessModels)
+                self?.handleEndingActivityIndicatorAndPresentingContainerViews()
+            })
+        })
+    }
+    
     func handleStartingActivityIndicatorAndHidingContainerViews() {
         mapViewContainer.alpha = 0
         listViewContainer.alpha = 0
@@ -93,25 +112,9 @@ fileprivate extension HomeViewController {
         listViewContainer.alpha = 1
     }
     
-    func getUsersLocationAndCenterOnMap() {
-        handleStartingActivityIndicatorAndHidingContainerViews()
-        
-        UserLocationManager.getUsersLocation(completion: { [weak self] location in
-            self?.mapViewController?.centerViewOnUser(location)
-            
-            NetworkManager.fetchJsonFromYelpApiService(for: location, completion: { [weak self] businesses in
-                guard let businesses = businesses else {
-                    // show alert that we didnt get any data back
-                    return
-                }
-                                
-                self?.mapViewController?.placeAnnotationPinsOnMap(with: businesses)
-                
-                //give the businesses to the listview controller to display the data
-            
-                self?.handleEndingActivityIndicatorAndPresentingContainerViews()
-            })
-        })
+    func passBusinessModelsToViewControllers(_ businessModels: [BusinessModel]) {
+        mapViewController?.placeAnnotationPinsOnMap(with: businessModels)
+        listViewController?.presentBusinessDataOnList(with: businessModels)
     }
     
     // TODO: Persist Segment Control choice

@@ -7,7 +7,6 @@
 
 import UIKit
 import MapKit
-import Kingfisher
 
 class MapViewController: UIViewController {
     
@@ -20,6 +19,8 @@ class MapViewController: UIViewController {
     fileprivate lazy var impactGenerator: UIImpactFeedbackGenerator = {
         UIImpactFeedbackGenerator(style: .medium)
     }()
+    
+    // MARK: Lifecycle
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,7 @@ class MapViewController: UIViewController {
     func placeAnnotationPinsOnMap(with yelpBusinessModels: [BusinessModel]) {
         yelpBusinessModels.forEach { [weak self] business in
             
-            let annotation = MKPointAnnotation()
+            let annotation = YelpBusinessMapAnnotation(for: business)
             annotation.coordinate = CLLocationCoordinate2D(
                 latitude: business.coordinates.latitude,
                 longitude: business.coordinates.longitude
@@ -54,16 +55,18 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MKMapViewDelegate {
     
+    // MARK: MapViewDelegate
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard !(annotation is MKUserLocation) else { return nil }
         
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
-        if annotationView == nil { annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier) }
-        annotationView?.image = UIImage(named: "pin")
+        let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) ?? MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        annotationView.image = UIImage(named: "pin")
         return annotationView
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard !(view.annotation is MKUserLocation) else { return }
         impactGenerator.prepare()
         
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -71,11 +74,25 @@ extension MapViewController: MKMapViewDelegate {
             impactGenerator.impactOccurred()
             
             // pass the details VC the data for the business to present
-            
+            let yelpMapAnnotation = view.annotation as? YelpBusinessMapAnnotation
+            detailsVC.updateViewsWithBusinessData(for: yelpMapAnnotation?.business)
             self.navigationController?.pushViewController(detailsVC, animated: true)
+            
+            mapView.deselectAnnotation(view.annotation, animated: false)
         }
-        mapView.deselectAnnotation(view.annotation, animated: true)
     }
     
+}
+
+fileprivate extension MapViewController {
+    
+    // MARK: Yelp Map Annotation
+    class YelpBusinessMapAnnotation: MKPointAnnotation {
+        let business: BusinessModel
+        
+        init(for business: BusinessModel) {
+            self.business = business
+        }
+    }
 }
 

@@ -15,6 +15,10 @@ class ListViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    func presentBusinessDataOnList(with yelpBusinessModels: [BusinessModel]) {
+        print(yelpBusinessModels)
+    }
+    
 }
 
 
