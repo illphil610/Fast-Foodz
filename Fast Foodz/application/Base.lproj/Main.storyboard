@@ -55,6 +55,9 @@
                                     <action selector="switchViewAction:" destination="MOT-AS-nGc" eventType="valueChanged" id="mSL-x3-Env"/>
                                 </connections>
                             </segmentedControl>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="722-uo-U3f">
+                                <rect key="frame" x="197" y="482" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -62,9 +65,11 @@
                             <constraint firstItem="g7o-bv-gMs" firstAttribute="bottom" secondItem="MRo-Cw-tqq" secondAttribute="bottom" id="6LI-40-g7w"/>
                             <constraint firstItem="g7o-bv-gMs" firstAttribute="trailing" secondItem="MRo-Cw-tqq" secondAttribute="trailing" id="73b-kg-bN3"/>
                             <constraint firstItem="MRo-Cw-tqq" firstAttribute="top" secondItem="dnb-Yb-INw" secondAttribute="topMargin" constant="-88" id="9N5-1r-vzM"/>
+                            <constraint firstItem="722-uo-U3f" firstAttribute="centerX" secondItem="QHJ-OZ-7L9" secondAttribute="centerX" id="GhC-xT-Obe"/>
                             <constraint firstItem="MRo-Cw-tqq" firstAttribute="centerX" secondItem="dnb-Yb-INw" secondAttribute="centerX" id="Lnl-iK-l8T"/>
                             <constraint firstItem="QHJ-OZ-7L9" firstAttribute="centerX" secondItem="g7o-bv-gMs" secondAttribute="centerX" id="RnP-sw-8zT"/>
                             <constraint firstItem="g7o-bv-gMs" firstAttribute="top" secondItem="yFc-2f-2tV" secondAttribute="top" id="WON-mK-bjg"/>
+                            <constraint firstItem="722-uo-U3f" firstAttribute="centerY" secondItem="g7o-bv-gMs" secondAttribute="centerY" id="k1X-RU-mrl"/>
                             <constraint firstItem="g7o-bv-gMs" firstAttribute="leading" secondItem="MRo-Cw-tqq" secondAttribute="leading" id="m7a-Dy-ZZq"/>
                             <constraint firstItem="QHJ-OZ-7L9" firstAttribute="top" secondItem="yFc-2f-2tV" secondAttribute="top" constant="24" id="oxY-72-9FC"/>
                             <constraint firstItem="MRo-Cw-tqq" firstAttribute="centerY" secondItem="dnb-Yb-INw" secondAttribute="centerY" id="rHz-qx-Snh"/>
@@ -74,6 +79,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Fast Food Places" id="mfq-7q-w4x"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="722-uo-U3f" id="E3S-dT-f7k"/>
                         <outlet property="listViewContainer" destination="g7o-bv-gMs" id="rSr-Zd-Vdw"/>
                         <outlet property="mapViewContainer" destination="MRo-Cw-tqq" id="cUf-FD-lWG"/>
                         <outlet property="segmentedControl" destination="QHJ-OZ-7L9" id="u75-ja-SDw"/>

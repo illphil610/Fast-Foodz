@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class HomeViewController: UIViewController {
 
@@ -14,6 +15,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var mapViewContainer: UIView!
     @IBOutlet weak var listViewContainer: UIView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     
     fileprivate var mapViewController: MapViewController?
     fileprivate var listViewController: ListViewController?
@@ -77,8 +80,28 @@ fileprivate extension HomeViewController {
     // MARK: Location
     
     func getUsersLocationAndCenterOnMap() {
+        self.mapViewContainer.alpha = 0
+        self.listViewContainer.alpha = 0
+        
+        activityIndicator.startAnimating()
+        
         UserLocationManager.getUsersLocation(completion: { [weak self] location in
+            
+            // start the medium animation and hide both container views while loading
+            
             self?.mapViewController?.centerViewOnUser(location)
+            
+            NetworkManager.fetchJsonFromYelpApiService(for: location, completion: { [weak self] businesses in
+                guard let businesses = businesses else { return }
+                
+                self?.mapViewController?.placeAnnotationPinsOnMap(with: businesses)
+                
+                // do all the necessary stuff with the data
+                                
+                self?.activityIndicator.stopAnimating()
+                self?.mapViewContainer.alpha = 1
+                self?.listViewContainer.alpha = 1
+            })
         })
     }
     
