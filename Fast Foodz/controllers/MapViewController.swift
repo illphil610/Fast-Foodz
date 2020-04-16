@@ -13,6 +13,8 @@ class MapViewController: UIViewController {
     // MARK: Properties
     
     @IBOutlet weak var mapView: MKMapView!
+    let reuseIdentifier = "AnnotationView"
+    let impactGenerator = UIImpactFeedbackGenerator(style: .medium)
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +23,12 @@ class MapViewController: UIViewController {
     }
     
     func centerViewOnUser(_ location: CLLocation) {
-        let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
-        mapView.setRegion(region, animated: true)
+        let region = MKCoordinateRegion(
+            center: location.coordinate,
+            latitudinalMeters: 1000,
+            longitudinalMeters: 1000
+        )
+        mapView.setRegion(region, animated: false)
     }
     
     func placeAnnotationPinsOnMap(with yelpBusinessModels: [BusinessModel]) {
@@ -41,11 +47,24 @@ class MapViewController: UIViewController {
 extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        return nil
+        guard !(annotation is MKUserLocation) else { return nil }
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
+        if annotationView == nil { annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier) }
+        annotationView?.image = UIImage(named: "pin")
+        return annotationView
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print("the annotation was selected \(view.annotation?.title)")
+        impactGenerator.prepare()
+        impactGenerator.impactOccurred()
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        if let detailsVC = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController {
+            // pass the details VC the data for the business to present
+            navigationController?.pushViewController(detailsVC, animated: true)
+        }
     }
+    
 }
 

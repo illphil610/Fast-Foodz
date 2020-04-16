@@ -17,7 +17,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    
     fileprivate var mapViewController: MapViewController?
     fileprivate var listViewController: ListViewController?
         
@@ -79,25 +78,24 @@ fileprivate extension HomeViewController {
     
     // MARK: Location
     
-    func getUsersLocationAndCenterOnMap() {
+    func handleStartingActivityIndicatorAndHidingContainerViews() {
         self.mapViewContainer.alpha = 0
         self.listViewContainer.alpha = 0
-        
         activityIndicator.startAnimating()
+    }
+    
+    func getUsersLocationAndCenterOnMap() {
+        handleStartingActivityIndicatorAndHidingContainerViews()
         
         UserLocationManager.getUsersLocation(completion: { [weak self] location in
-            
-            // start the medium animation and hide both container views while loading
-            
             self?.mapViewController?.centerViewOnUser(location)
             
             NetworkManager.fetchJsonFromYelpApiService(for: location, completion: { [weak self] businesses in
                 guard let businesses = businesses else { return }
-                
-                self?.mapViewController?.placeAnnotationPinsOnMap(with: businesses)
-                
-                // do all the necessary stuff with the data
                                 
+                self?.mapViewController?.placeAnnotationPinsOnMap(with: businesses)
+                //give the businesses to the listview controller to display the data
+            
                 self?.activityIndicator.stopAnimating()
                 self?.mapViewContainer.alpha = 1
                 self?.listViewContainer.alpha = 1
