@@ -22,7 +22,7 @@ struct Location: Codable {
 
 struct Coordinates: Codable {
     let latitude: Double
-    let longitude: Double
+    let longitude: Double    
 }
 
 struct Category: Codable {

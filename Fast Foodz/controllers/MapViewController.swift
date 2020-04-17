@@ -15,6 +15,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     fileprivate let reuseIdentifier = "AnnotationView"
+    fileprivate let initialSpanInMeters: Double = 1000
     
     fileprivate lazy var impactGenerator: UIImpactFeedbackGenerator = {
         UIImpactFeedbackGenerator(style: .medium)
@@ -31,8 +32,8 @@ class MapViewController: UIViewController {
     func centerViewOnUser(_ location: CLLocation) {
         let region = MKCoordinateRegion(
             center: location.coordinate,
-            latitudinalMeters: 1000,
-            longitudinalMeters: 1000
+            latitudinalMeters: initialSpanInMeters,
+            longitudinalMeters: initialSpanInMeters
         )
         
         mapView.setRegion(region, animated: false)
@@ -75,6 +76,7 @@ extension MapViewController: MKMapViewDelegate {
             
             // pass the details VC the data for the business to present
             let yelpMapAnnotation = view.annotation as? YelpBusinessMapAnnotation
+            
             detailsVC.updateViewsWithBusinessData(for: yelpMapAnnotation?.business)
             self.navigationController?.pushViewController(detailsVC, animated: true)
             
