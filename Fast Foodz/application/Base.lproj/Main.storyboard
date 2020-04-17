@@ -202,13 +202,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="T3f-Cw-R53">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T3f-Cw-R53">
                                 <rect key="frame" x="0.0" y="88" width="414" height="250"/>
+                                <color key="backgroundColor" red="0.93333333333333335" green="0.94117647058823528" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="ugR-At-haF"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmZ-KT-Imo">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmZ-KT-Imo">
                                 <rect key="frame" x="0.0" y="296" width="414" height="42"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="12" leading="16" bottom="12" trailing="16"/>
@@ -217,7 +218,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aMi-sk-PiU">
-                                <rect key="frame" x="20" y="352" width="374" height="439"/>
+                                <rect key="frame" x="16" y="354" width="382" height="438"/>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="16" leading="16" bottom="24" trailing="16"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4fZ-88-PMV">
@@ -237,17 +238,16 @@
                         <constraints>
                             <constraint firstItem="4fZ-88-PMV" firstAttribute="leading" secondItem="nmR-pp-lMD" secondAttribute="leadingMargin" id="01k-NC-Nqr"/>
                             <constraint firstItem="4fZ-88-PMV" firstAttribute="centerX" secondItem="UmZ-KT-Imo" secondAttribute="centerX" id="0H5-bm-Ro2"/>
-                            <constraint firstItem="aMi-sk-PiU" firstAttribute="top" secondItem="T3f-Cw-R53" secondAttribute="bottom" constant="14" id="AvE-Y1-brd"/>
-                            <constraint firstItem="4fZ-88-PMV" firstAttribute="top" secondItem="aMi-sk-PiU" secondAttribute="bottom" constant="25" id="Brs-ei-HSO"/>
+                            <constraint firstItem="AbK-eh-gho" firstAttribute="trailing" secondItem="aMi-sk-PiU" secondAttribute="trailing" constant="16" id="Amj-R0-uhK"/>
                             <constraint firstItem="UmZ-KT-Imo" firstAttribute="leading" secondItem="T3f-Cw-R53" secondAttribute="leading" id="Ekd-Id-7jP"/>
+                            <constraint firstItem="4fZ-88-PMV" firstAttribute="top" secondItem="aMi-sk-PiU" secondAttribute="bottom" constant="24" id="GWU-W0-qJK"/>
                             <constraint firstItem="UmZ-KT-Imo" firstAttribute="top" secondItem="AbK-eh-gho" secondAttribute="top" constant="208" id="OBK-Tf-tfe"/>
-                            <constraint firstItem="4fZ-88-PMV" firstAttribute="leading" secondItem="aMi-sk-PiU" secondAttribute="leading" id="bg4-H9-kHs"/>
+                            <constraint firstItem="aMi-sk-PiU" firstAttribute="top" secondItem="T3f-Cw-R53" secondAttribute="bottom" constant="16" id="Qgl-0j-eqB"/>
                             <constraint firstItem="UmZ-KT-Imo" firstAttribute="trailing" secondItem="T3f-Cw-R53" secondAttribute="trailing" id="dJx-G3-Lu3"/>
                             <constraint firstItem="T3f-Cw-R53" firstAttribute="centerX" secondItem="nmR-pp-lMD" secondAttribute="centerX" id="fOc-Kd-KDY"/>
                             <constraint firstItem="T3f-Cw-R53" firstAttribute="top" secondItem="AbK-eh-gho" secondAttribute="top" id="fwZ-ED-qbR"/>
-                            <constraint firstItem="4fZ-88-PMV" firstAttribute="top" secondItem="aMi-sk-PiU" secondAttribute="bottom" constant="25" id="iwN-Kz-8y1"/>
+                            <constraint firstItem="aMi-sk-PiU" firstAttribute="leading" secondItem="AbK-eh-gho" secondAttribute="leading" constant="16" id="gEF-Zy-cpO"/>
                             <constraint firstAttribute="bottomMargin" secondItem="4fZ-88-PMV" secondAttribute="bottom" constant="-2" id="qPT-zW-xGc"/>
-                            <constraint firstItem="4fZ-88-PMV" firstAttribute="trailing" secondItem="aMi-sk-PiU" secondAttribute="trailing" id="sxb-Cb-qGq"/>
                             <constraint firstItem="UmZ-KT-Imo" firstAttribute="bottom" secondItem="T3f-Cw-R53" secondAttribute="bottom" id="vVa-pt-p3r"/>
                             <constraint firstItem="T3f-Cw-R53" firstAttribute="leading" secondItem="AbK-eh-gho" secondAttribute="leading" id="zy9-H3-UmE"/>
                         </constraints>
@@ -292,7 +292,6 @@
     </scenes>
     <resources>
         <image name="burgers" width="512" height="513"/>
-        <image name="logo" width="152" height="73"/>
         <image name="share" width="32" height="32"/>
     </resources>
 </document>

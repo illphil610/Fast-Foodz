@@ -46,11 +46,16 @@ class DetailsViewController: UIViewController {
     // MARK: Actions
     
     @IBAction func shareButtonTapped(_ sender: UIBarButtonItem) {
+        guard let url = URL(string: currentBusiness?.url ?? "") else { return }
         
+        let vc = UIActivityViewController(activityItems: [url], applicationActivities: [])
+        present(vc, animated: true)
     }
     
     @IBAction func callBusinessButtonTapped(_ sender: UIButton) {
+        guard let url = URL(string: "tel://(\(currentBusiness?.phone ?? "")"), UIApplication.shared.canOpenURL(url) else { return }
         
+        UIApplication.shared.open(url)
     }
     
 }
