@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		04A9DC64C14B07E299DD046D /* Pods_Fast_Foodz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B46D064CB6A537DFB8FD7A /* Pods_Fast_Foodz.framework */; };
+		4A512FC9244A1E770008541D /* NSMutableAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A512FC8244A1E770008541D /* NSMutableAttributedString+Extensions.swift */; };
 		4A6A07FA2446AD860087B637 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6A07F92446AD860087B637 /* MapKit.framework */; };
 		4A6A080124478C360087B637 /* UserLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A080024478C360087B637 /* UserLocationManager.swift */; };
 		4A6A0803244793430087B637 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A0802244793430087B637 /* NetworkManager.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		19B46D064CB6A537DFB8FD7A /* Pods_Fast_Foodz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fast_Foodz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A512FC8244A1E770008541D /* NSMutableAttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extensions.swift"; sourceTree = "<group>"; };
 		4A6A07F92446AD860087B637 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4A6A080024478C360087B637 /* UserLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationManager.swift; sourceTree = "<group>"; };
 		4A6A0802244793430087B637 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 		4A6A07FD2446ED270087B637 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				4A512FC8244A1E770008541D /* NSMutableAttributedString+Extensions.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				4A6A08082448097C0087B637 /* YelpBusinessTableViewCell.swift in Sources */,
 				4ADDCD4424463F8A006FAF31 /* DetailsViewController.swift in Sources */,
 				4ADDCD3E24463E30006FAF31 /* MapViewController.swift in Sources */,
+				4A512FC9244A1E770008541D /* NSMutableAttributedString+Extensions.swift in Sources */,
 				9762A92323DE2C1D005C3A4D /* AppDelegate.swift in Sources */,
 				4ADDCD4024463E6B006FAF31 /* HomeViewController.swift in Sources */,
 				4ADDCD4224463E7A006FAF31 /* ListViewController.swift in Sources */,

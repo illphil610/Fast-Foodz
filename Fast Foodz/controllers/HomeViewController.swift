@@ -53,10 +53,12 @@ fileprivate extension HomeViewController {
             self?.mapViewController?.centerViewOnUser(location)
             
             NetworkManager.fetchJsonFromYelpApiService(for: location, completion: { [weak self] businesses in
-                guard let businessModels = businesses else { return }
+                guard let businessModels = businesses else {
+                    self?.handleEndingActivityIndicatorAndShowingErrorAlert(); return
+                }
                 
                 self?.passBusinessModelsToViewControllers(businessModels)
-                self?.handleEndingActivityIndicatorAndPresentingContainerViews()
+               self?.handleEndingActivityIndicatorAndPresentingContainerViews()
             })
         })
     }
@@ -108,6 +110,13 @@ fileprivate extension HomeViewController {
         segmentedControl.alpha = 1
         
         handleContainerTransition()
+    }
+    
+    func handleEndingActivityIndicatorAndShowingErrorAlert() {
+        handleEndingActivityIndicatorAndPresentingContainerViews()
+        let ac = UIAlertController(title: "No data available", message: "We ran into an issue retreiving your data", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
     }
     
     func passBusinessModelsToViewControllers(_ businessModels: [BusinessModel]) {

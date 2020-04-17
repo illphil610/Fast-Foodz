@@ -207,7 +207,7 @@
                                                 <constraint firstItem="UoO-Gu-qB2" firstAttribute="baseline" secondItem="fXP-8l-0L8" secondAttribute="baseline" id="xxK-7q-hK6"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <connections>
                                             <outlet property="categoryImage" destination="PAH-NG-ggP" id="LHg-d3-fuu"/>
                                             <outlet property="distanceLabel" destination="dzZ-79-Ghh" id="6aZ-0s-V4a"/>
