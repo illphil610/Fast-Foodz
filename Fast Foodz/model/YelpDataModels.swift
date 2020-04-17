@@ -8,45 +8,48 @@
 import Foundation
 
 struct YelpBusinessModel: Codable {
-    let businesses: [BusinessModel]
+    var businesses: [BusinessModel]?
 }
 
 struct Location: Codable {
-    let address1: String
-    let address2: String?
-    let address3: String?
-    let zip_code: String
-    let state: String
-    let city: String
+    var address1: String? = ""
+    var address2: String? = ""
+    var address3: String? = ""
+    var zip_code: String? = ""
+    var state: String? = ""
+    var city: String? = ""
 }
 
 struct Coordinates: Codable {
-    let latitude: Double
-    let longitude: Double    
+    var latitude: Double? = 0.0
+    var longitude: Double? = 0.0
 }
 
 struct Category: Codable {
-    let alias: String
-    let title: String
+    var alias: String? = ""
+    var title: String? = ""
 }
 
 struct BusinessModel: Codable {
-    let coordinates: Coordinates
-    let categories: [Category]
-    let location: Location
-    let image_url: String
-    let distance: Double
-    let rating: Double
-    let phone: String
-    let name: String
-    let url: String
+    var coordinates: Coordinates
+    var categories: [Category]
+    var location: Location
+    var image_url: String? = ""
+    var distance: Double? = 0.0
+    var rating: Double? = 0.0
+    var price: String? = ""
+    var phone: String? = ""
+    var name: String? = ""
+    var url: String? = ""
 }
 
 struct FastFoodzStringConstants {
+    static let yelpBusinessTableViewCell = "YelpBusinessTableViewCell"
     static let segmentControlSelection = "segmentControlSelection"
     static let detailsVC = "DetailsViewController"
     static let listEmbedSeque = "ListEmbedSeque"
     static let mapEmbedSeque = "MapEmbedSegue"
     static let storyboardMain = "Main"
+    static let ratingDollars = "$$$$"
     static let pin = "pin"
 }

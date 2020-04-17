@@ -7,35 +7,28 @@
 
 import UIKit
 
-class YelpBusinessCellData {
+struct YelpBusinessCellData {
     let name: String
     let cellImage: UIImage
     let distance: Double
     let rating: Double
-    
-    init(name: String, image: UIImage,
-         distance: Double, rating: Double) {
-        self.name = name; self.cellImage = image;
-        self.distance = distance; self.rating = rating
-    }
-    
-    init(with businessModel: BusinessModel) {
-        self.name = businessModel.name
-        self.cellImage = #imageLiteral(resourceName: "chinese")
-        self.distance = businessModel.distance
-        self.rating = businessModel.rating
-    }
 }
 
 class YelpBusinessTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var celImage: UIImageView!
+    @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var ratingsLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var seperatorView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        let selectedView = UIView()
+        selectedView.backgroundColor = .powderBlue
+        selectedBackgroundView = selectedView
+        contentView.backgroundColor = UIColor.clear
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

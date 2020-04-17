@@ -20,10 +20,6 @@ class HomeViewController: UIViewController {
     
     fileprivate var mapViewController: MapViewController?
     fileprivate var listViewController: ListViewController?
-    
-    fileprivate lazy var yelpBusinesses: [String: BusinessModel] = {
-        [String: BusinessModel]()
-    }()
         
     // MARK: Lifecycle
     
@@ -57,10 +53,12 @@ fileprivate extension HomeViewController {
             self?.mapViewController?.centerViewOnUser(location)
             
             NetworkManager.fetchJsonFromYelpApiService(for: location, completion: { [weak self] businesses in
-                guard let businessModels = businesses else { return }
+                guard let businessModels = businesses else {
+                    self?.handleEndingActivityIndicatorAndShowingErrorAlert(); return
+                }
                 
                 self?.passBusinessModelsToViewControllers(businessModels)
-                self?.handleEndingActivityIndicatorAndPresentingContainerViews()
+               self?.handleEndingActivityIndicatorAndPresentingContainerViews()
             })
         })
     }
@@ -74,8 +72,6 @@ fileprivate extension HomeViewController {
     
     func checkSegmentControlStateAtLaunch() {
         guard let value = UserDefaults.standard.value(forKey: FastFoodzStringConstants.segmentControlSelection) as? Int else { return }
-        print(value)
-        
         segmentedControl.selectedSegmentIndex = value
         handleContainerTransition()
     }
@@ -110,13 +106,30 @@ fileprivate extension HomeViewController {
     func handleEndingActivityIndicatorAndPresentingContainerViews() {
         activityIndicator.stopAnimating()
         segmentedControl.alpha = 1
-        
         handleContainerTransition()
+    }
+        
+    func handleEndingActivityIndicatorAndShowingErrorAlert() {
+        activityIndicator.stopAnimating(); mapViewContainer.alpha = 0
+        
+        let alert = UIAlertController(title: "No data available",
+                                   message: "We ran into an issue retreiving your data",
+                                   preferredStyle: .alert)
+        // Create the actions
+        let retryAction = UIAlertAction(title: "Retry", style: .default) { UIAlertAction in
+            self.getUsersLocationAndYelpData()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(retryAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
     }
     
     func passBusinessModelsToViewControllers(_ businessModels: [BusinessModel]) {
         mapViewController?.placeAnnotationPinsOnMap(with: businessModels)
-        listViewController?.presentBusinessDataOnList(with: businessModels)
+        listViewController?.yelpBusinessData = businessModels
     }
     
     func handleContainerTransition() {

@@ -43,8 +43,8 @@ class MapViewController: UIViewController {
             
             let annotation = YelpBusinessMapAnnotation(for: business)
             annotation.coordinate = CLLocationCoordinate2D(
-                latitude: business.coordinates.latitude,
-                longitude: business.coordinates.longitude
+                latitude: business.coordinates.latitude ?? 0.0,
+                longitude: business.coordinates.longitude ?? 0.0
             )
             
             self?.mapView.addAnnotation(annotation)
@@ -61,26 +61,11 @@ extension MapViewController: MKMapViewDelegate {
         guard !(annotation is MKUserLocation) else { return nil }
         
         let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) ?? MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(mapPinTapped(_:)))
+        annotationView.addGestureRecognizer(tapGestureRecognizer)
+        annotationView.isUserInteractionEnabled = true
         annotationView.image = UIImage(named: FastFoodzStringConstants.pin)
         return annotationView
-    }
-    
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        guard !(view.annotation is MKUserLocation) else { return }
-        impactGenerator.prepare()
-        
-        let storyboard = UIStoryboard(name: FastFoodzStringConstants.storyboardMain, bundle: Bundle.main)
-        if let detailsVC = storyboard.instantiateViewController(withIdentifier: FastFoodzStringConstants.detailsVC) as? DetailsViewController {
-            impactGenerator.impactOccurred()
-            
-            // pass the details VC the data for the business to present
-            let yelpMapAnnotation = view.annotation as? YelpBusinessMapAnnotation
-            
-            detailsVC.updateViewsWithBusinessData(for: yelpMapAnnotation?.business)
-            self.navigationController?.pushViewController(detailsVC, animated: true)
-            
-            mapView.deselectAnnotation(view.annotation, animated: false)
-        }
     }
     
 }
@@ -93,6 +78,24 @@ fileprivate extension MapViewController {
         
         init(for business: BusinessModel) {
             self.business = business
+        }
+    }
+    
+    @objc func mapPinTapped(_ sender: UITapGestureRecognizer?) {
+        guard
+            let mapAnnotationView = sender?.view as? MKAnnotationView,
+            !(mapAnnotationView.annotation is MKUserLocation) else { return }
+        
+        impactGenerator.prepare()
+        impactGenerator.impactOccurred()
+        
+        let storyboard = UIStoryboard(name: FastFoodzStringConstants.storyboardMain, bundle: Bundle.main)
+        if let detailsVC = storyboard.instantiateViewController(withIdentifier: FastFoodzStringConstants.detailsVC) as? DetailsViewController {
+            let yelpMapAnnotation = mapAnnotationView.annotation as? YelpBusinessMapAnnotation
+            DispatchQueue.main.async {
+                detailsVC.updateViewsWithBusinessData(for: yelpMapAnnotation?.business)
+                self.navigationController?.pushViewController(detailsVC, animated: true)
+            }
         }
     }
 }
