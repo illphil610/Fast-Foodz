@@ -11,7 +11,7 @@ class ListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    fileprivate var yelpBusinessData = [BusinessModel]() {
+    var yelpBusinessData = [BusinessModel]() {
         didSet {
             tableView.reloadData()
         }
@@ -24,13 +24,16 @@ class ListViewController: UIViewController {
         tableView.dataSource = self
     }
     
-    func presentBusinessDataOnList(with yelpBusinessModels: [BusinessModel]) {
-        yelpBusinessData = yelpBusinessModels
-    }
+//    func presentBusinessDataOnList(with yelpBusinessModels: [BusinessModel]) {
+//        yelpBusinessData = yelpBusinessModels
+//    }
     
 }
 
 extension ListViewController: UITableViewDelegate {
+    
+    //MARK: TableView Delegate
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: FastFoodzStringConstants.storyboardMain, bundle: Bundle.main)
         if let detailsVC = storyboard.instantiateViewController(withIdentifier: FastFoodzStringConstants.detailsVC) as? DetailsViewController {
@@ -38,9 +41,12 @@ extension ListViewController: UITableViewDelegate {
             self.navigationController?.pushViewController(detailsVC, animated: true)
         }
     }
+    
 }
 
 extension ListViewController: UITableViewDataSource {
+    
+    // MARK: TableView DataSource Delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return yelpBusinessData.count
     }

@@ -112,7 +112,7 @@ fileprivate extension HomeViewController {
     
     func passBusinessModelsToViewControllers(_ businessModels: [BusinessModel]) {
         mapViewController?.placeAnnotationPinsOnMap(with: businessModels)
-        listViewController?.presentBusinessDataOnList(with: businessModels)
+        listViewController?.yelpBusinessData = businessModels
     }
     
     func handleContainerTransition() {
