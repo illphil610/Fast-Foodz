@@ -49,14 +49,11 @@ extension ListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "YelpBusinessTableViewCell") as? YelpBusinessTableViewCell
-        //cell?.imageView?.image = yelpBusinessData[indexPath.row].categories
+        let cell = tableView.dequeueReusableCell(withIdentifier: FastFoodzStringConstants.yelpBusinessTableViewCell) as? YelpBusinessTableViewCell
         cell?.nameLabel.text = yelpBusinessData[indexPath.row].name
         cell?.distanceLabel.text = String(format:"%.2f", yelpBusinessData[indexPath.row].distance)
         cell?.ratingsLabel.text = yelpBusinessData[indexPath.row].rating.description
-        
-        determineImage(for: yelpBusinessData[indexPath.row].categories)
-        
+        cell?.categoryImage?.image = UIImage(named: determineImage(for: yelpBusinessData[indexPath.row].categories))
         return cell ?? UITableViewCell()
     }
     
@@ -64,28 +61,19 @@ extension ListViewController: UITableViewDataSource {
 
 fileprivate extension ListViewController {
     
-    enum CategoryType {
-        case pizza, chinese, burger, mexican
+    // MARK: Private Methods
+    
+    func determineImage(for categories: [Category]) -> String {
+        for category in categories {
+            switch category.title.lowercased() {
+            case "pizza", "burgers", "chinese", "mexican":
+                return category.title.lowercased()
+            default: break
+            }
+        }
+        return ""
     }
     
-//    func determineImage(for categories: [Category]) -> String {
-//        
-//        categories.forEach { category in
-//            switch category.title {
-//            case .pizza:
-//                break
-//            case .mexican:
-//                break,
-//            case .chinese:
-//                break,
-//            case, burger:
-//                break
-//            }
-//        }
-//        
-//        return ""
-//        
-//    }
 }
 
 
