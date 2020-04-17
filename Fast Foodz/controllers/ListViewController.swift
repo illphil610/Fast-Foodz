@@ -38,20 +38,29 @@ extension ListViewController: UITableViewDelegate {
     
     //MARK: TableView Delegate
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as? YelpBusinessTableViewCell
+        
         let storyboard = UIStoryboard(name: FastFoodzStringConstants.storyboardMain, bundle: Bundle.main)
         if let detailsVC = storyboard.instantiateViewController(withIdentifier: FastFoodzStringConstants.detailsVC) as? DetailsViewController {
             detailsVC.updateViewsWithBusinessData(for: yelpBusinessData[indexPath.row])
             self.navigationController?.pushViewController(detailsVC, animated: true)
+            //UIView.animate(withDuration: 1, animations: { cell?.seperatorView.alpha = 1 })
         }
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FastFoodzStringConstants.yelpBusinessTableViewCell) as? YelpBusinessTableViewCell
-        
-        cell?.backgroundColor = .clear
-
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as? YelpBusinessTableViewCell
+        cell?.seperatorView.alpha = 0
     }
+    
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as? YelpBusinessTableViewCell
+        if !(navigationController?.topViewController?.isKind(of: DetailsViewController.self) ?? true) {
+            UIView.animate(withDuration: 1, animations: { cell?.seperatorView.alpha = 1 })
+        }
+    }
+
 }
 
 extension ListViewController: UITableViewDataSource {
@@ -65,7 +74,7 @@ extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FastFoodzStringConstants.yelpBusinessTableViewCell) as? YelpBusinessTableViewCell
         cell?.nameLabel.text = yelpBusinessData[indexPath.row].name
-        cell?.distanceLabel.text = String(format:"%.2f", getMiles(from: yelpBusinessData[indexPath.row].distance))
+        cell?.distanceLabel.text = String(format:"%.2f", getMiles(from: yelpBusinessData[indexPath.row].distance ?? 0.0)) + " miles"
         cell?.ratingsLabel.attributedText = determineRatings(for: yelpBusinessData[indexPath.row].price ?? "")
         cell?.categoryImage?.image = UIImage(named: determineImage(for: yelpBusinessData[indexPath.row].categories))
         return cell ?? UITableViewCell()
@@ -85,9 +94,11 @@ fileprivate extension ListViewController {
     
     func determineImage(for categories: [Category]) -> String {
         for category in categories {
-            switch category.title.lowercased() {
+            guard let title = category.title else { continue }
+            
+            switch title.lowercased() {
             case "pizza", "burgers", "chinese", "mexican":
-                return category.title.lowercased()
+                return title.lowercased()
             default: break
             }
         }
@@ -105,5 +116,4 @@ fileprivate extension ListViewController {
     }
     
 }
-
 

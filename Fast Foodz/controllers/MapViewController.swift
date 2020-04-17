@@ -43,8 +43,8 @@ class MapViewController: UIViewController {
             
             let annotation = YelpBusinessMapAnnotation(for: business)
             annotation.coordinate = CLLocationCoordinate2D(
-                latitude: business.coordinates.latitude,
-                longitude: business.coordinates.longitude
+                latitude: business.coordinates.latitude ?? 0.0,
+                longitude: business.coordinates.longitude ?? 0.0
             )
             
             self?.mapView.addAnnotation(annotation)

@@ -20,6 +20,7 @@ class YelpBusinessTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var ratingsLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var seperatorView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

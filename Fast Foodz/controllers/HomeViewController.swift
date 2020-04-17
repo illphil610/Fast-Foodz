@@ -72,8 +72,6 @@ fileprivate extension HomeViewController {
     
     func checkSegmentControlStateAtLaunch() {
         guard let value = UserDefaults.standard.value(forKey: FastFoodzStringConstants.segmentControlSelection) as? Int else { return }
-        print(value)
-        
         segmentedControl.selectedSegmentIndex = value
         handleContainerTransition()
     }
@@ -108,15 +106,25 @@ fileprivate extension HomeViewController {
     func handleEndingActivityIndicatorAndPresentingContainerViews() {
         activityIndicator.stopAnimating()
         segmentedControl.alpha = 1
-        
         handleContainerTransition()
     }
-    
+        
     func handleEndingActivityIndicatorAndShowingErrorAlert() {
-        handleEndingActivityIndicatorAndPresentingContainerViews()
-        let ac = UIAlertController(title: "No data available", message: "We ran into an issue retreiving your data", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
+        activityIndicator.stopAnimating(); mapViewContainer.alpha = 0
+        
+        let alert = UIAlertController(title: "No data available",
+                                   message: "We ran into an issue retreiving your data",
+                                   preferredStyle: .alert)
+        // Create the actions
+        let retryAction = UIAlertAction(title: "Retry", style: .default) { UIAlertAction in
+            self.getUsersLocationAndYelpData()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(retryAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
     }
     
     func passBusinessModelsToViewControllers(_ businessModels: [BusinessModel]) {
