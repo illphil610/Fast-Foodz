@@ -37,6 +37,7 @@ struct BusinessModel: Codable {
     let image_url: String
     let distance: Double
     let rating: Double
+    let price: String?
     let phone: String
     let name: String
     let url: String

@@ -52,7 +52,7 @@ extension ListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: FastFoodzStringConstants.yelpBusinessTableViewCell) as? YelpBusinessTableViewCell
         cell?.nameLabel.text = yelpBusinessData[indexPath.row].name
         cell?.distanceLabel.text = String(format:"%.2f", yelpBusinessData[indexPath.row].distance)
-        cell?.ratingsLabel.text = yelpBusinessData[indexPath.row].rating.description
+        cell?.ratingsLabel.attributedText = determineRatings(for: yelpBusinessData[indexPath.row].price ?? "")
         cell?.categoryImage?.image = UIImage(named: determineImage(for: yelpBusinessData[indexPath.row].categories))
         return cell ?? UITableViewCell()
     }
@@ -74,6 +74,21 @@ fileprivate extension ListViewController {
         return ""
     }
     
+    func determineRatings(for price: String) -> NSMutableAttributedString {
+        let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: "$$$$")
+        attributedString.setColorForText(textForAttribute: price, withColor: UIColor.pickleGreen)
+        return attributedString
+    }
+    
+}
+
+extension NSMutableAttributedString {
+
+    func setColorForText(textForAttribute: String, withColor color: UIColor) {
+        let range: NSRange = self.mutableString.range(of: textForAttribute, options: .caseInsensitive)
+        self.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
+    }
+
 }
 
 
