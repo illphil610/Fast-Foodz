@@ -16,9 +16,8 @@ class DetailsViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet var mapView: MKMapView!
     @IBOutlet weak var callButton: UIButton!
-    
     fileprivate var currentBusiness: BusinessModel?
         
     // MARK: Lifecycle
@@ -26,9 +25,7 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupMapView()
-        setupCallButton()
-        createDirectionRequest()
+        setupViews()
     }
     
     func updateViewsWithBusinessData(for business: BusinessModel?) {
@@ -84,12 +81,7 @@ extension DetailsViewController: MKMapViewDelegate {
         
         let directions = MKDirections(request: directionRequest)
         directions.calculate(completionHandler: { response, error in
-            guard let response = response else {
-                if let error = error {
-                    print("[DetailsVC] Error getting directions: \(error)")
-                }
-                return
-            }
+            guard let response = response else { return }
             
             let route = response.routes[0]
             self.mapView.addOverlay(route.polyline, level: MKOverlayLevel.aboveRoads)
@@ -112,10 +104,16 @@ fileprivate extension DetailsViewController {
     
     // MARK: Private Methods
     
-    func setupMapView() {
+    func setupViews() {
+        setupMapViewAndMakeDirectionsRequest()
+        setupCallButton()
+    }
+    
+    func setupMapViewAndMakeDirectionsRequest() {
         mapView.delegate = self
         mapView.layer.cornerRadius = 12
         mapView.clipsToBounds = true
+        createDirectionRequest()
     }
     
     func setupCallButton() {

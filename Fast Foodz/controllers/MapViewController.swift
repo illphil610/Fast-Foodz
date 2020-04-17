@@ -16,7 +16,6 @@ class MapViewController: UIViewController {
     
     fileprivate let reuseIdentifier = "AnnotationView"
     fileprivate let initialSpanInMeters: Double = 1000
-    
     fileprivate lazy var impactGenerator: UIImpactFeedbackGenerator = {
         UIImpactFeedbackGenerator(style: .medium)
     }()
@@ -62,7 +61,7 @@ extension MapViewController: MKMapViewDelegate {
         guard !(annotation is MKUserLocation) else { return nil }
         
         let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) ?? MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
-        annotationView.image = UIImage(named: "pin")
+        annotationView.image = UIImage(named: FastFoodzStringConstants.pin)
         return annotationView
     }
     
@@ -70,8 +69,8 @@ extension MapViewController: MKMapViewDelegate {
         guard !(view.annotation is MKUserLocation) else { return }
         impactGenerator.prepare()
         
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        if let detailsVC = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController {
+        let storyboard = UIStoryboard(name: FastFoodzStringConstants.storyboardMain, bundle: Bundle.main)
+        if let detailsVC = storyboard.instantiateViewController(withIdentifier: FastFoodzStringConstants.detailsVC) as? DetailsViewController {
             impactGenerator.impactOccurred()
             
             // pass the details VC the data for the business to present

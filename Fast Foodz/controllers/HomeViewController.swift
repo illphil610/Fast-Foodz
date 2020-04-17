@@ -90,7 +90,10 @@ fileprivate extension HomeViewController {
             self?.mapViewController?.centerViewOnUser(location)
             
             NetworkManager.fetchJsonFromYelpApiService(for: location, completion: { [weak self] businesses in
-                guard let businessModels = businesses else { return } //show alert that we didnt get any data back
+                guard let businessModels = businesses else {
+                    //show alert that we didnt get any data back
+                    return
+                }
                 
                 self?.passBusinessModelsToViewControllers(businessModels)
                 self?.handleEndingActivityIndicatorAndPresentingContainerViews()

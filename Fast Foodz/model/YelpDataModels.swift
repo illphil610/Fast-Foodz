@@ -41,3 +41,9 @@ struct BusinessModel: Codable {
     let name: String
     let url: String
 }
+
+struct FastFoodzStringConstants {
+    static let pin = "pin"
+    static let storyboardMain = "Main"
+    static let detailsVC = "DetailsViewController"
+}
