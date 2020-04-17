@@ -76,13 +76,29 @@
 		4A3B0CC024468223005FB2AA /* utilities */ = {
 			isa = PBXGroup;
 			children = (
-				4A6A080024478C360087B637 /* UserLocationManager.swift */,
+				4A512FCB244A61EE0008541D /* location */,
+				4A512FCA244A61B20008541D /* networking */,
 				9762A93623DE2D99005C3A4D /* Colors.swift */,
-				9716375A23DE511400888D1C /* APIKey.swift */,
-				4A6A0802244793430087B637 /* NetworkManager.swift */,
 				4A6A08072448097C0087B637 /* YelpBusinessTableViewCell.swift */,
 			);
 			path = utilities;
+			sourceTree = "<group>";
+		};
+		4A512FCA244A61B20008541D /* networking */ = {
+			isa = PBXGroup;
+			children = (
+				4A6A0802244793430087B637 /* NetworkManager.swift */,
+				9716375A23DE511400888D1C /* APIKey.swift */,
+			);
+			path = networking;
+			sourceTree = "<group>";
+		};
+		4A512FCB244A61EE0008541D /* location */ = {
+			isa = PBXGroup;
+			children = (
+				4A6A080024478C360087B637 /* UserLocationManager.swift */,
+			);
+			path = location;
 			sourceTree = "<group>";
 		};
 		4A6A07FD2446ED270087B637 /* extensions */ = {

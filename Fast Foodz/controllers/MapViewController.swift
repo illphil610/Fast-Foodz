@@ -73,6 +73,7 @@ extension MapViewController: MKMapViewDelegate {
 fileprivate extension MapViewController {
     
     // MARK: Yelp Map Annotation
+    
     class YelpBusinessMapAnnotation: MKPointAnnotation {
         let business: BusinessModel
         

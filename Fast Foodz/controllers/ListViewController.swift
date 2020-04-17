@@ -43,7 +43,6 @@ extension ListViewController: UITableViewDelegate {
         if let detailsVC = storyboard.instantiateViewController(withIdentifier: FastFoodzStringConstants.detailsVC) as? DetailsViewController {
             detailsVC.updateViewsWithBusinessData(for: yelpBusinessData[indexPath.row])
             self.navigationController?.pushViewController(detailsVC, animated: true)
-            //UIView.animate(withDuration: 1, animations: { cell?.seperatorView.alpha = 1 })
         }
     }
     
