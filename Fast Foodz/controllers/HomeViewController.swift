@@ -20,10 +20,6 @@ class HomeViewController: UIViewController {
     
     fileprivate var mapViewController: MapViewController?
     fileprivate var listViewController: ListViewController?
-    
-    fileprivate lazy var yelpBusinesses: [String: BusinessModel] = {
-        [String: BusinessModel]()
-    }()
         
     // MARK: Lifecycle
     

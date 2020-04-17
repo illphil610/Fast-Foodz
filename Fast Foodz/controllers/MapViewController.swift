@@ -67,20 +67,18 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         guard !(view.annotation is MKUserLocation) else { return }
+        
         impactGenerator.prepare()
+        impactGenerator.impactOccurred()
         
         let storyboard = UIStoryboard(name: FastFoodzStringConstants.storyboardMain, bundle: Bundle.main)
         if let detailsVC = storyboard.instantiateViewController(withIdentifier: FastFoodzStringConstants.detailsVC) as? DetailsViewController {
-            impactGenerator.impactOccurred()
-            
-            // pass the details VC the data for the business to present
             let yelpMapAnnotation = view.annotation as? YelpBusinessMapAnnotation
-            
             detailsVC.updateViewsWithBusinessData(for: yelpMapAnnotation?.business)
-            self.navigationController?.pushViewController(detailsVC, animated: true)
             
-            mapView.deselectAnnotation(view.annotation, animated: false)
+            self.navigationController?.pushViewController(detailsVC, animated: true)
         }
+        mapView.deselectAnnotation(view.annotation, animated: false)
     }
     
 }
