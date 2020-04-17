@@ -43,7 +43,10 @@ struct BusinessModel: Codable {
 }
 
 struct FastFoodzStringConstants {
-    static let pin = "pin"
-    static let storyboardMain = "Main"
+    static let segmentControlSelection = "segmentControlSelection"
     static let detailsVC = "DetailsViewController"
+    static let listEmbedSeque = "ListEmbedSeque"
+    static let mapEmbedSeque = "MapEmbedSegue"
+    static let storyboardMain = "Main"
+    static let pin = "pin"
 }

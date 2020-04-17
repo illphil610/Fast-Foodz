@@ -30,16 +30,16 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupSegmentedControlTextAttributes()
-        getUsersLocationAndGetBusiessDataFromYelpService()
+        getUsersLocationAndYelpData()
+        setUpSegmentControlAndCheckSelectedState()
     }
     
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let currentVC = segue.destination as? MapViewController, segue.identifier == "MapEmbedSegue" {
+        if let currentVC = segue.destination as? MapViewController, segue.identifier == FastFoodzStringConstants.mapEmbedSeque {
             mapViewController = currentVC
-        } else if let currentVC = segue.destination as? ListViewController, segue.identifier == "ListEmbedSeque" {
+        } else if let currentVC = segue.destination as? ListViewController, segue.identifier == FastFoodzStringConstants.listEmbedSeque {
             listViewController = currentVC
         }
     }
@@ -48,9 +48,39 @@ class HomeViewController: UIViewController {
 
 fileprivate extension HomeViewController {
     
-    // MARK: Segmented Control UI
+    // MARK: Location / Yelp API Request
     
-    func setupSegmentedControlTextAttributes() {
+    func getUsersLocationAndYelpData() {
+        handleStartingActivityIndicatorAndHidingContainerViews()
+        
+        UserLocationManager.getUsersLocation(completion: { [weak self] location in
+            self?.mapViewController?.centerViewOnUser(location)
+            
+            NetworkManager.fetchJsonFromYelpApiService(for: location, completion: { [weak self] businesses in
+                guard let businessModels = businesses else { return }
+                
+                self?.passBusinessModelsToViewControllers(businessModels)
+                self?.handleEndingActivityIndicatorAndPresentingContainerViews()
+            })
+        })
+    }
+    
+    // MARK: Segmented Control
+    
+    func setUpSegmentControlAndCheckSelectedState() {
+        checkSegmentControlStateAtLaunch()
+        setupSegmentedControl()
+    }
+    
+    func checkSegmentControlStateAtLaunch() {
+        guard let value = UserDefaults.standard.value(forKey: FastFoodzStringConstants.segmentControlSelection) as? Int else { return }
+        print(value)
+        
+        segmentedControl.selectedSegmentIndex = value
+        handleContainerTransition()
+    }
+    
+    func setupSegmentedControl() {
         segmentedControl.setTitleTextAttributes(
             [NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.selected
         )
@@ -62,7 +92,35 @@ fileprivate extension HomeViewController {
     // MARK: Segment Control Actions
     
     @IBAction func switchViewAction(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
+        UserDefaults.standard.set(
+            sender.selectedSegmentIndex,
+            forKey: FastFoodzStringConstants.segmentControlSelection
+        )
+        
+        handleContainerTransition()
+    }
+    
+    func handleStartingActivityIndicatorAndHidingContainerViews() {
+        activityIndicator.startAnimating()
+        mapViewContainer.alpha = 0
+        listViewContainer.alpha = 0
+        segmentedControl.alpha = 0
+    }
+    
+    func handleEndingActivityIndicatorAndPresentingContainerViews() {
+        activityIndicator.stopAnimating()
+        segmentedControl.alpha = 1
+        
+        handleContainerTransition()
+    }
+    
+    func passBusinessModelsToViewControllers(_ businessModels: [BusinessModel]) {
+        mapViewController?.placeAnnotationPinsOnMap(with: businessModels)
+        listViewController?.presentBusinessDataOnList(with: businessModels)
+    }
+    
+    func handleContainerTransition() {
+        switch segmentedControl.selectedSegmentIndex {
         case 0:
             UIView.animate(
                 withDuration: 0.5, animations: {
@@ -81,46 +139,6 @@ fileprivate extension HomeViewController {
         }
     }
     
-    // MARK: Location
-    
-    func getUsersLocationAndGetBusiessDataFromYelpService() {
-        handleStartingActivityIndicatorAndHidingContainerViews()
-        
-        UserLocationManager.getUsersLocation(completion: { [weak self] location in
-            self?.mapViewController?.centerViewOnUser(location)
-            
-            NetworkManager.fetchJsonFromYelpApiService(for: location, completion: { [weak self] businesses in
-                guard let businessModels = businesses else {
-                    //show alert that we didnt get any data back
-                    return
-                }
-                
-                self?.passBusinessModelsToViewControllers(businessModels)
-                self?.handleEndingActivityIndicatorAndPresentingContainerViews()
-            })
-        })
-    }
-    
-    func handleStartingActivityIndicatorAndHidingContainerViews() {
-        mapViewContainer.alpha = 0
-        listViewContainer.alpha = 0
-        segmentedControl.alpha = 0
-        activityIndicator.startAnimating()
-    }
-    
-    func handleEndingActivityIndicatorAndPresentingContainerViews() {
-        activityIndicator.stopAnimating()
-        segmentedControl.alpha = 1
-        mapViewContainer.alpha = 1
-        listViewContainer.alpha = 1
-    }
-    
-    func passBusinessModelsToViewControllers(_ businessModels: [BusinessModel]) {
-        mapViewController?.placeAnnotationPinsOnMap(with: businessModels)
-        listViewController?.presentBusinessDataOnList(with: businessModels)
-    }
-    
-    // TODO: Persist Segment Control choice
 }
 
 

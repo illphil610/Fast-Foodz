@@ -35,7 +35,7 @@ class MapViewController: UIViewController {
             longitudinalMeters: initialSpanInMeters
         )
         
-        mapView.setRegion(region, animated: false)
+        mapView.setRegion(region, animated: true)
     }
     
     func placeAnnotationPinsOnMap(with yelpBusinessModels: [BusinessModel]) {
