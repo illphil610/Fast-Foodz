@@ -24,10 +24,6 @@ class ListViewController: UIViewController {
         tableView.dataSource = self
     }
     
-//    func presentBusinessDataOnList(with yelpBusinessModels: [BusinessModel]) {
-//        yelpBusinessData = yelpBusinessModels
-//    }
-    
 }
 
 extension ListViewController: UITableViewDelegate {
@@ -47,20 +43,49 @@ extension ListViewController: UITableViewDelegate {
 extension ListViewController: UITableViewDataSource {
     
     // MARK: TableView DataSource Delegate
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return yelpBusinessData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "YelpBusinessTableViewCell") as? YelpBusinessTableViewCell
-        //cell?.imageView?.image = yelpBusinessData[indexPath.row].cellImage
+        //cell?.imageView?.image = yelpBusinessData[indexPath.row].categories
         cell?.nameLabel.text = yelpBusinessData[indexPath.row].name
         cell?.distanceLabel.text = String(format:"%.2f", yelpBusinessData[indexPath.row].distance)
         cell?.ratingsLabel.text = yelpBusinessData[indexPath.row].rating.description
         
+        determineImage(for: yelpBusinessData[indexPath.row].categories)
+        
         return cell ?? UITableViewCell()
     }
     
+}
+
+fileprivate extension ListViewController {
+    
+    enum CategoryType {
+        case pizza, chinese, burger, mexican
+    }
+    
+//    func determineImage(for categories: [Category]) -> String {
+//        
+//        categories.forEach { category in
+//            switch category.title {
+//            case .pizza:
+//                break
+//            case .mexican:
+//                break,
+//            case .chinese:
+//                break,
+//            case, burger:
+//                break
+//            }
+//        }
+//        
+//        return ""
+//        
+//    }
 }
 
 

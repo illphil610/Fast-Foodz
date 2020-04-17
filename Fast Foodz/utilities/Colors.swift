@@ -41,3 +41,12 @@ extension UIColor {
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
 }
+
+extension NSMutableAttributedString {
+
+    func setColorForText(textForAttribute: String, withColor color: UIColor) {
+        let range: NSRange = self.mutableString.range(of: textForAttribute, options: .caseInsensitive)
+        self.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
+    }
+
+}

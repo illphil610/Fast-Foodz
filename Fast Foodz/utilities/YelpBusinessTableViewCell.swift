@@ -16,7 +16,7 @@ struct YelpBusinessCellData {
 
 class YelpBusinessTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var celImage: UIImageView!
+    @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var ratingsLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
