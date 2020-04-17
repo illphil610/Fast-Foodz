@@ -38,9 +38,7 @@ extension ListViewController: UITableViewDelegate {
     
     //MARK: TableView Delegate
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as? YelpBusinessTableViewCell
-        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
         let storyboard = UIStoryboard(name: FastFoodzStringConstants.storyboardMain, bundle: Bundle.main)
         if let detailsVC = storyboard.instantiateViewController(withIdentifier: FastFoodzStringConstants.detailsVC) as? DetailsViewController {
             detailsVC.updateViewsWithBusinessData(for: yelpBusinessData[indexPath.row])

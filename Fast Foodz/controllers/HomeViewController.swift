@@ -58,7 +58,7 @@ fileprivate extension HomeViewController {
                 }
                 
                 self?.passBusinessModelsToViewControllers(businessModels)
-               self?.handleEndingActivityIndicatorAndPresentingContainerViews()
+                self?.handleEndingActivityIndicatorAndPresentingContainerViews()
             })
         })
     }
@@ -112,10 +112,11 @@ fileprivate extension HomeViewController {
     func handleEndingActivityIndicatorAndShowingErrorAlert() {
         activityIndicator.stopAnimating(); mapViewContainer.alpha = 0
         
-        let alert = UIAlertController(title: "No data available",
-                                   message: "We ran into an issue retreiving your data",
-                                   preferredStyle: .alert)
-        // Create the actions
+        let alert = UIAlertController(
+            title: "Network Connection Issue",
+            message: "We ran into an issue retreiving your data, please try again",
+            preferredStyle: .alert
+        )
         let retryAction = UIAlertAction(title: "Retry", style: .default) { UIAlertAction in
             self.getUsersLocationAndYelpData()
         }
