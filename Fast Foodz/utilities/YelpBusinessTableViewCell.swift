@@ -23,6 +23,11 @@ class YelpBusinessTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        let selectedView = UIView()
+        selectedView.backgroundColor = .powderBlue
+        selectedBackgroundView = selectedView
+        contentView.backgroundColor = UIColor.clear
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

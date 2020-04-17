@@ -50,5 +50,6 @@ struct FastFoodzStringConstants {
     static let listEmbedSeque = "ListEmbedSeque"
     static let mapEmbedSeque = "MapEmbedSegue"
     static let storyboardMain = "Main"
+    static let ratingDollars = "$$$$"
     static let pin = "pin"
 }
