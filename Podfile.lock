@@ -1,0 +1,26 @@
+PODS:
+  - Alamofire (5.1.0)
+  - Kingfisher (5.13.4):
+    - Kingfisher/Core (= 5.13.4)
+  - Kingfisher/Core (5.13.4)
+  - SwiftLocation (4.2.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.1)
+  - Kingfisher (~> 5.0)
+  - SwiftLocation (~> 4.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Kingfisher
+    - SwiftLocation
+
+SPEC CHECKSUMS:
+  Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
+  Kingfisher: d2279a7abece3c7f25a80cd2b7f363ca5cf3f44c
+  SwiftLocation: 609ac8859f2c5d48a6cadd2a58c63b1dae02dc25
+
+PODFILE CHECKSUM: 0a22881b3b8319cffecd2ae478cb5d4e6eb919b0
+
+COCOAPODS: 1.9.1
