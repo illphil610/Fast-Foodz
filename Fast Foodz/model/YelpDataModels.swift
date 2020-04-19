@@ -43,7 +43,7 @@ struct BusinessModel: Codable {
     var url: String? = ""
 }
 
-struct FastFoodzStringConstants {
+struct FastFoodzConstants {
     static let yelpBusinessTableViewCell = "YelpBusinessTableViewCell"
     static let segmentControlSelection = "segmentControlSelection"
     static let detailsVC = "DetailsViewController"

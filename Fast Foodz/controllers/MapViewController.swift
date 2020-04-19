@@ -64,7 +64,7 @@ extension MapViewController: MKMapViewDelegate {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(mapPinTapped(_:)))
         annotationView.addGestureRecognizer(tapGestureRecognizer)
         annotationView.isUserInteractionEnabled = true
-        annotationView.image = UIImage(named: FastFoodzStringConstants.pin)
+        annotationView.image = UIImage(named: FastFoodzConstants.pin)
         return annotationView
     }
     
@@ -90,8 +90,8 @@ fileprivate extension MapViewController {
         impactGenerator.prepare()
         impactGenerator.impactOccurred()
         
-        let storyboard = UIStoryboard(name: FastFoodzStringConstants.storyboardMain, bundle: Bundle.main)
-        if let detailsVC = storyboard.instantiateViewController(withIdentifier: FastFoodzStringConstants.detailsVC) as? DetailsViewController {
+        let storyboard = UIStoryboard(name: FastFoodzConstants.storyboardMain, bundle: Bundle.main)
+        if let detailsVC = storyboard.instantiateViewController(withIdentifier: FastFoodzConstants.detailsVC) as? DetailsViewController {
             let yelpMapAnnotation = mapAnnotationView.annotation as? YelpBusinessMapAnnotation
             DispatchQueue.main.async {
                 detailsVC.updateViewsWithBusinessData(for: yelpMapAnnotation?.business)

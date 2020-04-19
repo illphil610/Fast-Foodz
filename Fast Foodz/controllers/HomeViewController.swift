@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Alamofire
 
 class HomeViewController: UIViewController {
 
@@ -33,13 +32,18 @@ class HomeViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let currentVC = segue.destination as? MapViewController, segue.identifier == FastFoodzStringConstants.mapEmbedSeque {
+        if let currentVC = segue.destination as? MapViewController, segue.identifier == FastFoodzConstants.mapEmbedSeque {
             mapViewController = currentVC
-        } else if let currentVC = segue.destination as? ListViewController, segue.identifier == FastFoodzStringConstants.listEmbedSeque {
+        } else if let currentVC = segue.destination as? ListViewController, segue.identifier == FastFoodzConstants.listEmbedSeque {
             listViewController = currentVC
         }
     }
-
+    
+    // MARK: - Actions
+    @IBAction func refreshButtonTapped(_ sender: UIBarButtonItem) {
+        getUsersLocationAndYelpData()
+    }
+    
 }
 
 fileprivate extension HomeViewController {
@@ -71,7 +75,7 @@ fileprivate extension HomeViewController {
     }
     
     func checkSegmentControlStateAtLaunch() {
-        guard let value = UserDefaults.standard.value(forKey: FastFoodzStringConstants.segmentControlSelection) as? Int else { return }
+        guard let value = UserDefaults.standard.value(forKey: FastFoodzConstants.segmentControlSelection) as? Int else { return }
         segmentedControl.selectedSegmentIndex = value
         handleContainerTransition()
     }
@@ -90,7 +94,7 @@ fileprivate extension HomeViewController {
     @IBAction func switchViewAction(_ sender: UISegmentedControl) {
         UserDefaults.standard.set(
             sender.selectedSegmentIndex,
-            forKey: FastFoodzStringConstants.segmentControlSelection
+            forKey: FastFoodzConstants.segmentControlSelection
         )
         
         handleContainerTransition()

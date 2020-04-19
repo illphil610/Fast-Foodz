@@ -39,8 +39,8 @@ extension ListViewController: UITableViewDelegate {
     //MARK: TableView Delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
-        let storyboard = UIStoryboard(name: FastFoodzStringConstants.storyboardMain, bundle: Bundle.main)
-        if let detailsVC = storyboard.instantiateViewController(withIdentifier: FastFoodzStringConstants.detailsVC) as? DetailsViewController {
+        let storyboard = UIStoryboard(name: FastFoodzConstants.storyboardMain, bundle: Bundle.main)
+        if let detailsVC = storyboard.instantiateViewController(withIdentifier: FastFoodzConstants.detailsVC) as? DetailsViewController {
             detailsVC.updateViewsWithBusinessData(for: yelpBusinessData[indexPath.row])
             self.navigationController?.pushViewController(detailsVC, animated: true)
         }
@@ -69,10 +69,10 @@ extension ListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FastFoodzStringConstants.yelpBusinessTableViewCell) as? YelpBusinessTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: FastFoodzConstants.yelpBusinessTableViewCell) as? YelpBusinessTableViewCell
         cell?.nameLabel.text = yelpBusinessData[indexPath.row].name
         cell?.distanceLabel.text = String(format:"%.2f", getMiles(from: yelpBusinessData[indexPath.row].distance ?? 0.0)) + " miles"
-        cell?.ratingsLabel.attributedText = determineRatings(for: yelpBusinessData[indexPath.row].price ?? "")
+        cell?.ratingsLabel.attributedText = determineRatingsAndReturnFormattedStringWithColor(for: yelpBusinessData[indexPath.row].price ?? "")
         cell?.categoryImage?.image = UIImage(named: determineImage(for: yelpBusinessData[indexPath.row].categories))
         return cell ?? UITableViewCell()
     }
@@ -94,16 +94,16 @@ fileprivate extension ListViewController {
             guard let title = category.title else { continue }
             
             switch title.lowercased() {
-            case "pizza", "burgers", "chinese", "mexican":
+            case "pizza", "burgers", "chinese", "mexican", " burger":
                 return title.lowercased()
             default: break
             }
         }
-        return ""
+        return "burgers"
     }
     
-    func determineRatings(for price: String) -> NSMutableAttributedString {
-        let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: FastFoodzStringConstants.ratingDollars)
+    func determineRatingsAndReturnFormattedStringWithColor(for price: String) -> NSMutableAttributedString {
+        let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: FastFoodzConstants.ratingDollars)
         attributedString.setColorForText(textForAttribute: price, withColor: UIColor.pickleGreen)
         return attributedString
     }
